@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbopx2dd3bxke"]
+
+[ext_resource type="Script" path="res://leviathan/actors/enemies/flower/Flower.cs" id="1_hy0or"]
+[ext_resource type="Shader" path="res://leviathan/shaders/highlight_flash.gdshader" id="1_j0l1s"]
+[ext_resource type="PackedScene" uid="uid://o7c8nw6o7kdj" path="res://leviathan/actors/enemies/attacks/enemy_bullet.tscn" id="2_6jn13"]
+[ext_resource type="PackedScene" uid="uid://7sg8aw8okp7a" path="res://leviathan/actors/enemies/flower/flower_sprite.tscn" id="2_q8kp5"]
+[ext_resource type="PackedScene" uid="uid://dhrvxac2c7m6d" path="res://leviathan/actors/enemies/base/vulnerable_bounds.tscn" id="3_5pkf8"]
+[ext_resource type="PackedScene" uid="uid://djatyiwdq502a" path="res://leviathan/actors/enemies/base/enemy_bounds.tscn" id="4_0uyn4"]
+[ext_resource type="PackedScene" uid="uid://2l1f8g473kup" path="res://leviathan/actors/effects/flower_explosion.tscn" id="4_14wwt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbr3l"]
+resource_local_to_scene = true
+shader = ExtResource("1_j0l1s")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04exr"]
+radius = 24.1868
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tcmtl"]
+radius = 21.0238
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmp0p"]
+
+[node name="Flower" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_lbr3l")
+script = ExtResource("1_hy0or")
+Bullet = ExtResource("2_6jn13")
+DeathAnimation = ExtResource("4_14wwt")
+
+[node name="FlowerSprite" parent="." instance=ExtResource("2_q8kp5")]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="VulnerableBounds" parent="." instance=ExtResource("3_5pkf8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VulnerableBounds"]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_04exr")
+debug_color = Color(0.945098, 0.137255, 0.494118, 0.419608)
+
+[node name="EnemyBounds" parent="." instance=ExtResource("4_0uyn4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds"]
+position = Vector2(0, -20)
+shape = SubResource("CircleShape2D_tcmtl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_wmp0p")

@@ -1,0 +1,132 @@
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://d0wqabablyq4l"]
+
+[ext_resource type="Texture2D" uid="uid://bsxpj0stq1tfj" path="res://assets/tiles.png" id="1_msw0s"]
+[ext_resource type="Texture2D" uid="uid://06upkwpmxbm6" path="res://assets/tiles_internal.png" id="2_ucq0w"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_yvbbu"]
+tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 2, 1, 131074, 0, 65537, 131074, 2)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_icn7s"]
+texture = ExtResource("1_msw0s")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+0:0/0/metadata/_better_terrain = {
+3: [0],
+"type": 0
+}
+1:0/0 = 0
+1:0/0/metadata/_better_terrain = {
+3: [0],
+7: [0],
+"type": 0
+}
+2:0/0 = 0
+2:0/0/metadata/_better_terrain = {
+7: [0],
+"type": 0
+}
+3:0/0 = 0
+3:0/0/metadata/_better_terrain = {
+7: [0],
+11: [0],
+15: [0],
+"type": 0
+}
+4:0/0 = 0
+4:0/0/metadata/_better_terrain = {
+3: [0],
+11: [0],
+15: [0],
+"type": 0
+}
+0:1/0 = 0
+0:1/0/metadata/_better_terrain = {
+3: [0],
+15: [0],
+"type": 0
+}
+1:1/0 = 0
+1:1/0/metadata/_better_terrain = {
+3: [0],
+7: [0],
+11: [0],
+15: [0],
+"type": 0
+}
+2:1/0 = 0
+2:1/0/metadata/_better_terrain = {
+7: [0],
+11: [0],
+"type": 0
+}
+3:1/0 = 0
+3:1/0/metadata/_better_terrain = {
+3: [0],
+7: [0],
+11: [0],
+"type": 0
+}
+4:1/0 = 0
+4:1/0/metadata/_better_terrain = {
+3: [0],
+7: [0],
+15: [0],
+"type": 0
+}
+0:2/0 = 0
+0:2/0/metadata/_better_terrain = {
+15: [0],
+"type": 0
+}
+1:2/0 = 0
+1:2/0/metadata/_better_terrain = {
+11: [0],
+15: [0],
+"type": 0
+}
+2:2/0 = 0
+2:2/0/metadata/_better_terrain = {
+11: [0],
+"type": 0
+}
+3:2/0 = 0
+3:2/0/metadata/_better_terrain = {
+3: [0],
+11: [0],
+"type": 0
+}
+4:2/0 = 0
+4:2/0/metadata/_better_terrain = {
+7: [0],
+15: [0],
+"type": 0
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5nyio"]
+texture = ExtResource("2_ucq0w")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+
+[resource]
+tile_size = Vector2i(96, 96)
+sources/1 = SubResource("TileSetAtlasSource_icn7s")
+sources/2 = SubResource("TileSetAtlasSource_5nyio")
+pattern_0 = SubResource("TileMapPattern_yvbbu")
+metadata/_better_terrain = {
+"terrains": [["Wall", Color(0.0860199, 0.811568, 0.748009, 1), 1, []]],
+"version": "0.1"
+}

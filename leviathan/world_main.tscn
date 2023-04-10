@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp7sng4agshms"]
+
+[ext_resource type="PackedScene" uid="uid://c5efugl4nreu3" path="res://leviathan/levels/actual_world.tscn" id="1_oh65m"]
+[ext_resource type="PackedScene" uid="uid://dfcealv8dbupc" path="res://leviathan/ui/ui.tscn" id="2_5w04n"]
+
+[node name="world_main" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_oh65m")]
+
+[node name="UI" parent="." instance=ExtResource("2_5w04n")]

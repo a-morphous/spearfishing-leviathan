@@ -1,0 +1,3 @@
+All image assets in this folder are distributed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
+
+I didn't have the rights to distribute files for most of the sound effects used in the original build of _Spearfishing Leviathan_, so all the source files in the `sfx` folders have been replaced with empty sound files. You should be able to replace them with your own sound effects and have them work properly, as long as the filenames remain consistent. 

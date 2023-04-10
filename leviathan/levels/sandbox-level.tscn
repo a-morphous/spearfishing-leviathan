@@ -1,0 +1,121 @@
+[gd_scene load_steps=17 format=3 uid="uid://b2cuqci8irbgu"]
+
+[ext_resource type="PackedScene" uid="uid://cvhemkgh0hqwh" path="res://leviathan/world/world.tscn" id="1_slkim"]
+[ext_resource type="PackedScene" uid="uid://d0tmujusgk7u" path="res://leviathan/world/zone.tscn" id="2_i3xwq"]
+[ext_resource type="Script" path="res://leviathan/water/Water.cs" id="3_2jxui"]
+[ext_resource type="PackedScene" uid="uid://dcxelgvg83mpn" path="res://leviathan/objects/checkpoint.tscn" id="3_dc4t6"]
+[ext_resource type="TileSet" uid="uid://d0wqabablyq4l" path="res://assets/visual_tiles.tres" id="4_8surs"]
+[ext_resource type="PackedScene" uid="uid://co4ujc7ofr566" path="res://leviathan/actors/enemies/test_enemy.tscn" id="4_pm47x"]
+[ext_resource type="PackedScene" uid="uid://cp0nv4ljvhshd" path="res://leviathan/water/water.tscn" id="4_yg03e"]
+[ext_resource type="Shader" path="res://leviathan/shaders/full_color.gdshader" id="5_kxrl0"]
+[ext_resource type="PackedScene" uid="uid://cdylbxxopr1ve" path="res://leviathan/water/visuals/visual_water.tscn" id="6_svwab"]
+[ext_resource type="PackedScene" uid="uid://cbopx2dd3bxke" path="res://leviathan/actors/enemies/flower/flower.tscn" id="7_83waj"]
+[ext_resource type="PackedScene" uid="uid://bxwbvxedrs4ll" path="res://leviathan/actors/enemies/fish/fish_spawner.tscn" id="8_a266p"]
+[ext_resource type="Shader" path="res://leviathan/shaders/highlight_flash.gdshader" id="9_r75df"]
+[ext_resource type="PackedScene" uid="uid://dgdqceib3s8ax" path="res://leviathan/objects/hp_pickup.tscn" id="10_jorg8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dibdg"]
+resource_local_to_scene = true
+shader = ExtResource("5_kxrl0")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1kpq"]
+resource_local_to_scene = true
+shader = ExtResource("9_r75df")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64ly3"]
+resource_local_to_scene = true
+shader = ExtResource("9_r75df")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[node name="sandbox-level" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_slkim")]
+
+[node name="Zone" parent="World" instance=ExtResource("2_i3xwq")]
+
+[node name="CollisionMap" parent="World/Zone/Room" index="1"]
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 65546, 1, 0, 131082, 1, 0, 196618, 1, 0, 458762, 1, 0)
+
+[node name="Checkpoint" parent="World/Zone/Room/Objects" index="0" instance=ExtResource("3_dc4t6")]
+position = Vector2(171, 75)
+
+[node name="Water" type="Area2D" parent="World/Zone/Room" index="3"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_2jxui")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Zone/Room/Water"]
+polygon = PackedVector2Array(14, 103, 18, 245, 333, 241, 267, 139, 108, 141)
+
+[node name="TileMap" type="TileMap" parent="World/Zone/Room" index="4"]
+position = Vector2(-16, -16)
+scale = Vector2(0.33, 0.33)
+tile_set = ExtResource("4_8surs")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 131073, 131073, 1, 196609, 131073, 1, 262145, 131073, 1, 327681, 131073, 1, 393217, 131073, 1, 458753, 196609, 1, 65537, 196609, 0, 131072, 2, 1, 196608, 2, 1, 262144, 2, 1, 327680, 2, 1, 393216, 2, 1, 458752, 2, 1, 524288, 2, 2, 524289, 65538, 2, 458754, 65537, 0, 458755, 65537, 0, 458756, 65537, 0, 458757, 65537, 0, 458758, 65537, 0, 458759, 65537, 0, 458760, 65537, 0, 458761, 65537, 0, 458762, 65537, 0, 458763, 131074, 0, 524290, 65538, 2, 524291, 65538, 2, 524292, 65538, 2, 524293, 65538, 2, 524294, 65538, 2, 524295, 65538, 2, 524296, 65538, 2, 524297, 65538, 2, 524298, 65538, 2, 524299, 131074, 2, 10, 65538, 0, 11, 131074, 0, 65546, 262145, 0, 65547, 131074, 1, 131082, 1, 1, 131083, 131074, 1, 196618, 1, 1, 196619, 131074, 1, 262154, 1, 2, 262155, 131074, 2, 2, 65538, 0, 3, 65538, 0, 4, 65538, 0, 5, 65538, 0, 6, 65538, 0, 7, 65538, 0, 8, 65538, 0, 9, 65538, 0, 65538, 65537, 2, 65539, 65537, 2, 65540, 65537, 2, 65541, 65537, 2, 65542, 65537, 2, 65543, 65537, 2, 65544, 65537, 2, 65545, 65537, 2, 1, 65538, 0)
+
+[node name="Zone2" parent="World" instance=ExtResource("2_i3xwq")]
+
+[node name="CollisionMap" parent="World/Zone2/Room" index="1"]
+layer_0/tile_data = PackedInt32Array(196619, 1, 0, 131083, 1, 0, 65547, 1, 0, 11, 1, 0, -65525, 1, 0, -131061, 1, 0, -196597, 1, 0, -196596, 1, 0, -196595, 1, 0, -196594, 1, 0, -196593, 1, 0, -196592, 1, 0, -196591, 1, 0, -196590, 1, 0, -196589, 1, 0, -196588, 1, 0, -196587, 1, 0, -196586, 1, 0, -196585, 1, 0, -131049, 1, 0, -65513, 1, 0, 23, 1, 0, 65559, 1, 0, 131095, 1, 0, 196631, 1, 0, 262167, 1, 0, 327703, 1, 0, 393239, 1, 0, 458775, 1, 0, 458774, 1, 0, 458773, 1, 0, 458772, 1, 0, 458771, 1, 0, 458770, 1, 0, 458766, 1, 0, 458765, 1, 0, 458764, 1, 0, 458763, 1, 0, 196622, 1, 0, 196623, 1, 0, 196624, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 393235, 1, 0, 393234, 131073, 0)
+
+[node name="BasicEnemy" parent="World/Zone2/Room/Objects" index="0" instance=ExtResource("4_pm47x")]
+material = SubResource("ShaderMaterial_dibdg")
+position = Vector2(687, 189)
+
+[node name="Flower" parent="World/Zone2/Room/Objects" index="1" instance=ExtResource("7_83waj")]
+material = SubResource("ShaderMaterial_a1kpq")
+position = Vector2(385, 13)
+rotation = 1.5708
+
+[node name="Flower2" parent="World/Zone2/Room/Objects" index="2" instance=ExtResource("7_83waj")]
+material = SubResource("ShaderMaterial_64ly3")
+position = Vector2(496, 95)
+
+[node name="Checkpoint" parent="World/Zone2/Room/Objects" index="3" instance=ExtResource("3_dc4t6")]
+position = Vector2(622, -33)
+CheckPointIndex = 1
+
+[node name="hp_pickup" parent="World/Zone2/Room/Objects" index="4" instance=ExtResource("10_jorg8")]
+position = Vector2(624, -20)
+
+[node name="Zone3" parent="World" instance=ExtResource("2_i3xwq")]
+
+[node name="CollisionMap" parent="World/Zone3/Room" index="1"]
+layer_0/tile_data = PackedInt32Array(524299, 1, 0, 589835, 1, 0, 655371, 1, 0, 720907, 1, 0, 786443, 1, 0, 851979, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524306, 1, 0, 524307, 1, 0, 524308, 1, 0, 524309, 1, 0, 524310, 1, 0, 524311, 1, 0, 524312, 1, 0, 524313, 1, 0, 524314, 1, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 524318, 1, 0, 524319, 1, 0, 524320, 1, 0, 524321, 1, 0, 524322, 1, 0, 524323, 1, 0, 524324, 1, 0, 524325, 1, 0, 524326, 1, 0, 524327, 1, 0, 524328, 1, 0, 524329, 1, 0, 524330, 1, 0, 524331, 1, 0, 524332, 1, 0, 524333, 1, 0, 524334, 1, 0, 524335, 1, 0, 917515, 1, 0, 983051, 1, 0, 1048587, 1, 0, 1114123, 1, 0, 1179659, 1, 0, 1245195, 1, 0, 1310731, 1, 0, 1376267, 1, 0, 1441803, 1, 0, 1507339, 1, 0, 1572875, 1, 0, 1638411, 1, 0, 1703947, 1, 0, 1769483, 1, 0, 2162699, 1, 0, 1835019, 1, 0, 1900555, 1, 0, 1966091, 1, 0, 2031627, 1, 0, 2097163, 1, 0, 2228235, 1, 0, 2293771, 1, 0, 2359307, 1, 0, 2424843, 1, 0, 2424844, 1, 0, 2424845, 1, 0, 2424846, 1, 0, 2424847, 1, 0, 2424848, 1, 0, 2424849, 1, 0, 2424850, 1, 0, 2424851, 1, 0, 2424852, 1, 0, 2424853, 1, 0, 2424854, 1, 0, 2424855, 1, 0, 2424856, 1, 0, 2424857, 1, 0, 2424858, 1, 0, 2424859, 1, 0, 2424860, 1, 0, 2424861, 1, 0, 2424862, 1, 0, 2424863, 1, 0, 2424864, 1, 0, 2424865, 1, 0, 2424866, 1, 0, 2424867, 1, 0, 2424868, 1, 0, 2424869, 1, 0, 2424870, 1, 0, 2424871, 1, 0, 2424872, 1, 0, 2424873, 1, 0, 2424874, 1, 0, 2424875, 1, 0, 2424876, 1, 0, 2424877, 1, 0, 2424878, 1, 0, 2424879, 1, 0, 2424880, 1, 0, 2359344, 1, 0, 2293808, 1, 0, 2228272, 1, 0, 2162736, 1, 0, 2097200, 1, 0, 2031664, 1, 0, 1966128, 1, 0, 1900592, 1, 0, 1835056, 1, 0, 1769520, 1, 0, 1703984, 1, 0, 1638448, 1, 0, 1572912, 1, 0, 1507376, 1, 0, 1441840, 1, 0, 1376304, 1, 0, 1310768, 1, 0, 1245232, 1, 0, 1179696, 1, 0, 1114160, 1, 0, 1048624, 1, 0, 983088, 1, 0, 917552, 1, 0, 852016, 1, 0, 786480, 1, 0, 720944, 1, 0, 655408, 1, 0, 589872, 1, 0, 524336, 1, 0, 2031637, 1, 0, 2031638, 1, 0, 2031639, 1, 0, 2031640, 1, 0, 2031641, 1, 0, 1572893, 1, 0, 1572894, 1, 0, 1572895, 1, 0, 1572896, 1, 0, 1572897, 1, 0, 1572898, 1, 0, 1245221, 1, 0, 1245222, 1, 0, 1245223, 1, 0, 1245224, 1, 0, 1769506, 1, 0, 1769507, 1, 0, 1769508, 1, 0, 2097186, 1, 0, 2097187, 1, 0, 2097188, 1, 0, 917516, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 655375, 1, 0, 720911, 1, 0)
+
+[node name="VisualWater" parent="World/Zone3/Room/Objects" index="0" instance=ExtResource("6_svwab")]
+position = Vector2(366, 465)
+
+[node name="VisualWaterBounds" parent="World/Zone3/Room/Objects/VisualWater" index="2"]
+offset_right = 1187.0
+offset_bottom = 829.0
+
+[node name="FishSpawner" parent="World/Zone3/Room/Objects" index="1" instance=ExtResource("8_a266p")]
+position = Vector2(649, 602)
+
+[node name="FishSpawner2" parent="World/Zone3/Room/Objects" index="2" instance=ExtResource("8_a266p")]
+position = Vector2(1262, 872)
+
+[node name="Water" parent="World/Zone3/Room" index="3" instance=ExtResource("4_yg03e")]
+position = Vector2(1, 108)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Zone3/Room/Water"]
+polygon = PackedVector2Array(365, 341, 504, 370, 976, 368, 1551, 370, 1551, 1203, 369, 1202)
+
+[editable path="World/Zone"]
+[editable path="World/Zone/Room"]
+[editable path="World/Zone2"]
+[editable path="World/Zone2/Room"]
+[editable path="World/Zone3"]
+[editable path="World/Zone3/Room"]
+[editable path="World/Zone3/Room/Objects/VisualWater"]

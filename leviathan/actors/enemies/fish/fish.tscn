@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdtnstqtvvj3o"]
+
+[ext_resource type="Shader" path="res://leviathan/shaders/highlight_flash.gdshader" id="1_83fsp"]
+[ext_resource type="Script" path="res://leviathan/actors/enemies/fish/Fish.cs" id="2_h6htq"]
+[ext_resource type="PackedScene" uid="uid://bwbegwe5hp3to" path="res://leviathan/actors/enemies/fish/fish_sprite.tscn" id="2_rfggt"]
+[ext_resource type="PackedScene" uid="uid://d0q420kaelbo7" path="res://leviathan/actors/effects/fish_explosion.tscn" id="3_3684k"]
+[ext_resource type="PackedScene" uid="uid://djatyiwdq502a" path="res://leviathan/actors/enemies/base/enemy_bounds.tscn" id="3_pwlgq"]
+[ext_resource type="PackedScene" uid="uid://dgdqceib3s8ax" path="res://leviathan/objects/hp_pickup.tscn" id="4_l5jv5"]
+[ext_resource type="PackedScene" uid="uid://dhrvxac2c7m6d" path="res://leviathan/actors/enemies/base/vulnerable_bounds.tscn" id="4_n4qtp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtdta"]
+resource_local_to_scene = true
+shader = ExtResource("1_83fsp")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.4
+shader_parameter/active_contrast = 2.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk6s8"]
+size = Vector2(41, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrbn3"]
+radius = 8.0
+
+[node name="Fish" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_wtdta")
+collision_layer = 8
+script = ExtResource("2_h6htq")
+DeathAnimation = ExtResource("3_3684k")
+HPPickup = ExtResource("4_l5jv5")
+
+[node name="fish_sprite" parent="." instance=ExtResource("2_rfggt")]
+
+[node name="EnemyBounds" parent="." instance=ExtResource("3_pwlgq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds"]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_hk6s8")
+
+[node name="VulnerableBounds" parent="." instance=ExtResource("4_n4qtp")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="VulnerableBounds"]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_hk6s8")
+debug_color = Color(0.890196, 0, 0.792157, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CircleShape2D_xrbn3")

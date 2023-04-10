@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhrvxac2c7m6d"]
+
+[ext_resource type="Script" path="res://leviathan/actors/enemies/base/EnemyVulnerabilityArea.cs" id="1_a444e"]
+
+[node name="VulnerableBounds" type="Area2D" node_paths=PackedStringArray("Enemy")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_a444e")
+Enemy = NodePath("..")

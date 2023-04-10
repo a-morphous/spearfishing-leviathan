@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://bc5ir3ohw2jah"]
+
+[ext_resource type="PackedScene" uid="uid://di44fer3nc0cc" path="res://leviathan/actors/enemies/base/basic_enemy.tscn" id="1_0fsrv"]
+[ext_resource type="Script" path="res://leviathan/actors/enemies/leviathan/Leviathan.cs" id="2_2enw0"]
+[ext_resource type="Shader" path="res://leviathan/shaders/leviathan_flash.gdshader" id="2_4sws1"]
+[ext_resource type="PackedScene" uid="uid://q1j1kjieyfvh" path="res://leviathan/actors/enemies/leviathan/animations/leviathan_sprite.tscn" id="3_6t78n"]
+[ext_resource type="PackedScene" uid="uid://o7c8nw6o7kdj" path="res://leviathan/actors/enemies/attacks/enemy_bullet.tscn" id="4_u7jct"]
+[ext_resource type="PackedScene" uid="uid://bdtnstqtvvj3o" path="res://leviathan/actors/enemies/fish/fish.tscn" id="5_3kt2v"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bwcer"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fje7w"]
+noise = SubResource("FastNoiseLite_bwcer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6og7e"]
+shader = ExtResource("2_4sws1")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.3
+shader_parameter/active_contrast = 1.5
+shader_parameter/decay = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_fje7w")
+
+[sub_resource type="Animation" id="Animation_msw60"]
+resource_name = "Decay"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/decay")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_60f7t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/decay")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ysrr5"]
+_data = {
+"Decay": SubResource("Animation_msw60"),
+"RESET": SubResource("Animation_60f7t")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hmnx"]
+radius = 29.0
+height = 178.298
+
+[node name="Leviathan" node_paths=PackedStringArray("WeakPoint") instance=ExtResource("1_0fsrv")]
+material = SubResource("ShaderMaterial_6og7e")
+collision_mask = 32
+script = ExtResource("2_2enw0")
+WeakPoint = NodePath("leviathan_sprite/Transform/Skeleton2D/root/neck/VulnerableBounds")
+Bullet = ExtResource("4_u7jct")
+MinionFish = ExtResource("5_3kt2v")
+
+[node name="leviathan_sprite" parent="." index="0" instance=ExtResource("3_6t78n")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_ysrr5")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+rotation = 1.45386
+shape = SubResource("CapsuleShape2D_4hmnx")
+
+[editable path="leviathan_sprite"]

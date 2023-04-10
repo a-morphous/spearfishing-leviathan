@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://k4tdu8gpa6hb"]
+
+[ext_resource type="Script" path="res://leviathan/water/visuals/VisualWaterSpring.cs" id="1_6f62h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7lme"]
+size = Vector2(20, 5)
+
+[node name="WaterSpring" type="Node2D"]
+script = ExtResource("1_6f62h")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_v7lme")

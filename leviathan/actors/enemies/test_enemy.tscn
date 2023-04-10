@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://co4ujc7ofr566"]
+
+[ext_resource type="PackedScene" uid="uid://di44fer3nc0cc" path="res://leviathan/actors/enemies/base/basic_enemy.tscn" id="1_s5whq"]
+[ext_resource type="Texture2D" uid="uid://b3jxmvlmn74q1" path="res://icon.svg" id="2_khje2"]
+[ext_resource type="Shader" path="res://leviathan/shaders/full_color.gdshader" id="2_whawm"]
+[ext_resource type="PackedScene" uid="uid://djatyiwdq502a" path="res://leviathan/actors/enemies/base/enemy_bounds.tscn" id="4_h6j7h"]
+[ext_resource type="PackedScene" uid="uid://dhrvxac2c7m6d" path="res://leviathan/actors/enemies/base/vulnerable_bounds.tscn" id="5_aobms"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mbsj"]
+resource_local_to_scene = true
+shader = ExtResource("2_whawm")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m81va"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhpgl"]
+size = Vector2(60, 60)
+
+[node name="BasicEnemy" instance=ExtResource("1_s5whq")]
+material = SubResource("ShaderMaterial_4mbsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+use_parent_material = true
+scale = Vector2(0.507812, 0.507812)
+texture = ExtResource("2_khje2")
+
+[node name="EnemyBounds" parent="." index="1" instance=ExtResource("4_h6j7h")]
+
+[node name="EnemyBounds@CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds" index="0"]
+shape = SubResource("RectangleShape2D_m81va")
+
+[node name="VulnerableBounds" parent="." index="2" instance=ExtResource("5_aobms")]
+
+[node name="VulnerableBounds@CollisionShape2D" type="CollisionShape2D" parent="VulnerableBounds" index="0"]
+shape = SubResource("RectangleShape2D_vhpgl")

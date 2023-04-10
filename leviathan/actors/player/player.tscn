@@ -1,0 +1,194 @@
+[gd_scene load_steps=16 format=3 uid="uid://cair80s5wkmi3"]
+
+[ext_resource type="PackedScene" uid="uid://b2a5ydovyf3ot" path="res://leviathan/actors/actor.tscn" id="1_dwoqj"]
+[ext_resource type="Script" path="res://leviathan/actors/player/Player.cs" id="2_h58j1"]
+[ext_resource type="Shader" path="res://leviathan/shaders/full_color.gdshader" id="2_lxnpq"]
+[ext_resource type="PackedScene" uid="uid://dj3kqsodsi60v" path="res://leviathan/actors/effects/player_explosion.tscn" id="4_akbou"]
+[ext_resource type="Script" path="res://leviathan/actors/player/Head.cs" id="4_hlq0s"]
+[ext_resource type="PackedScene" uid="uid://hkhpuc34fykj" path="res://leviathan/actors/water_body.tscn" id="5_4f2v5"]
+[ext_resource type="PackedScene" uid="uid://brvi45dsvo5v1" path="res://leviathan/actors/player/animations/player_sprite.tscn" id="5_hmc01"]
+[ext_resource type="Script" path="res://leviathan/actors/player/AttackArea.cs" id="6_hrrhb"]
+[ext_resource type="AudioStream" uid="uid://bgwl7esfm5jx8" path="res://assets/sfx/swimming.wav" id="9_81nui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vk5rc"]
+shader = ExtResource("2_lxnpq")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qb35d"]
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wm8qn"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prr65"]
+size = Vector2(22, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yno5u"]
+size = Vector2(37, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slw57"]
+size = Vector2(35.4375, 35)
+
+[node name="Player" instance=ExtResource("1_dwoqj")]
+material = SubResource("ShaderMaterial_vk5rc")
+collision_mask = 27
+floor_constant_speed = true
+floor_snap_length = 16.0
+script = ExtResource("2_h58j1")
+DeathExplosion = ExtResource("4_akbou")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_qb35d")
+
+[node name="Head" type="Area2D" parent="." index="1"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_hlq0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head" index="0"]
+position = Vector2(2, -21)
+shape = SubResource("CircleShape2D_wm8qn")
+
+[node name="WaterBody" parent="." index="2" instance=ExtResource("5_4f2v5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterBody" index="0"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_prr65")
+
+[node name="PlayerSprite" parent="." index="3" instance=ExtResource("5_hmc01")]
+use_parent_material = true
+position = Vector2(0, -2)
+scale = Vector2(0.07, 0.07)
+
+[node name="Polygons" parent="PlayerSprite" index="0"]
+use_parent_material = true
+
+[node name="spear_back" parent="PlayerSprite/Polygons" index="0"]
+use_parent_material = true
+
+[node name="back_arm_upper" parent="PlayerSprite/Polygons" index="1"]
+use_parent_material = true
+
+[node name="back_arm_lower" parent="PlayerSprite/Polygons" index="2"]
+use_parent_material = true
+
+[node name="back_arm_hand" parent="PlayerSprite/Polygons" index="3"]
+use_parent_material = true
+
+[node name="back_leg_upper" parent="PlayerSprite/Polygons" index="4"]
+use_parent_material = true
+
+[node name="back_leg_lower" parent="PlayerSprite/Polygons" index="5"]
+use_parent_material = true
+
+[node name="back_leg_foot" parent="PlayerSprite/Polygons" index="6"]
+use_parent_material = true
+
+[node name="hip" parent="PlayerSprite/Polygons" index="7"]
+use_parent_material = true
+
+[node name="torso" parent="PlayerSprite/Polygons" index="8"]
+use_parent_material = true
+
+[node name="neck" parent="PlayerSprite/Polygons" index="9"]
+use_parent_material = true
+
+[node name="head" parent="PlayerSprite/Polygons" index="10"]
+use_parent_material = true
+
+[node name="front_leg_upper" parent="PlayerSprite/Polygons" index="11"]
+use_parent_material = true
+
+[node name="front_leg_lower" parent="PlayerSprite/Polygons" index="12"]
+use_parent_material = true
+
+[node name="front_leg_foot" parent="PlayerSprite/Polygons" index="13"]
+use_parent_material = true
+
+[node name="spear_attacking" parent="PlayerSprite/Polygons" index="14"]
+use_parent_material = true
+
+[node name="front_arm_upper" parent="PlayerSprite/Polygons" index="15"]
+use_parent_material = true
+
+[node name="front_arm_lower" parent="PlayerSprite/Polygons" index="16"]
+use_parent_material = true
+
+[node name="front_arm_hand" parent="PlayerSprite/Polygons" index="17"]
+use_parent_material = true
+
+[node name="Attacks" type="Node2D" parent="." index="4"]
+
+[node name="RegularAttack" type="Area2D" parent="Attacks" index="0"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("6_hrrhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/RegularAttack" index="0"]
+position = Vector2(32.5, -1.5)
+shape = SubResource("RectangleShape2D_yno5u")
+disabled = true
+
+[node name="FloatAttackForward" type="Area2D" parent="Attacks" index="1"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("6_hrrhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/FloatAttackForward" index="0"]
+position = Vector2(41, -2)
+shape = SubResource("RectangleShape2D_slw57")
+disabled = true
+
+[node name="FloatAttackUpForward" type="Area2D" parent="Attacks" index="2"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("6_hrrhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/FloatAttackUpForward" index="0"]
+position = Vector2(30, -28)
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_slw57")
+disabled = true
+
+[node name="FloatAttackUp" type="Area2D" parent="Attacks" index="3"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("6_hrrhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/FloatAttackUp" index="0"]
+position = Vector2(2, -45)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_slw57")
+disabled = true
+
+[node name="FloatAttackDownForward" type="Area2D" parent="Attacks" index="4"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("6_hrrhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/FloatAttackDownForward" index="0"]
+position = Vector2(21, 24)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_slw57")
+disabled = true
+
+[node name="FloatAttackDown" type="Area2D" parent="Attacks" index="5"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("6_hrrhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/FloatAttackDown" index="0"]
+position = Vector2(1, 35)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_slw57")
+disabled = true
+
+[node name="Audio" type="Node" parent="." index="5"]
+
+[node name="SwimLoop" type="AudioStreamPlayer" parent="Audio" index="0"]
+stream = ExtResource("9_81nui")
+volume_db = -15.0
+autoplay = true
+
+[editable path="PlayerSprite"]

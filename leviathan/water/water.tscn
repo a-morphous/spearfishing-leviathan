@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp0nv4ljvhshd"]
+
+[ext_resource type="Script" path="res://leviathan/water/Water.cs" id="1_1623r"]
+
+[node name="Water" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_1623r")

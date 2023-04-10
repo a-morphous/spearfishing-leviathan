@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdylbxxopr1ve"]
+
+[ext_resource type="Script" path="res://leviathan/water/visuals/VisualCurve.cs" id="1_fgftl"]
+[ext_resource type="Shader" path="res://leviathan/shaders/water_body.gdshader" id="1_olgqy"]
+[ext_resource type="Script" path="res://leviathan/water/visuals/VisualWater.cs" id="1_um66b"]
+[ext_resource type="PackedScene" uid="uid://k4tdu8gpa6hb" path="res://leviathan/water/visuals/visual_water_spring.tscn" id="2_1ppic"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2cx62"]
+shader = ExtResource("1_olgqy")
+shader_parameter/tint = Color(0.247059, 0.784314, 0.878431, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_kik4v"]
+
+[node name="VisualWater" type="Node2D"]
+script = ExtResource("1_um66b")
+WaterSpring = ExtResource("2_1ppic")
+
+[node name="WaterBody" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_2cx62")
+
+[node name="Border" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kik4v")
+script = ExtResource("1_fgftl")
+color = Color(0.603922, 1, 1, 1)
+
+[node name="VisualWaterBounds" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 147.0
+offset_bottom = 104.0

@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://sqw8iqrepe5q"]
+
+[ext_resource type="Script" path="res://leviathan/world/Zone.cs" id="1_bhvte"]
+[ext_resource type="PackedScene" uid="uid://bugxlkstxlwhb" path="res://leviathan/world/room.tscn" id="2_35oy6"]
+[ext_resource type="PackedScene" uid="uid://cbopx2dd3bxke" path="res://leviathan/actors/enemies/flower/flower.tscn" id="3_ptlxf"]
+[ext_resource type="Shader" path="res://leviathan/shaders/highlight_flash.gdshader" id="4_gwdm6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5bg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4chi"]
+resource_local_to_scene = true
+shader = ExtResource("4_gwdm6")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ug3kd"]
+resource_local_to_scene = true
+shader = ExtResource("4_gwdm6")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wij5"]
+resource_local_to_scene = true
+shader = ExtResource("4_gwdm6")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dur2k"]
+resource_local_to_scene = true
+shader = ExtResource("4_gwdm6")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18kno"]
+resource_local_to_scene = true
+shader = ExtResource("4_gwdm6")
+shader_parameter/active = false
+shader_parameter/active_brightness = 0.5
+shader_parameter/active_contrast = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[node name="08-LongCorridor" type="Node2D"]
+script = ExtResource("1_bhvte")
+
+[node name="ZoneArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 129
+
+[node name="Rectangle" type="CollisionShape2D" parent="ZoneArea"]
+shape = SubResource("RectangleShape2D_2i5bg")
+debug_color = Color(0.596078, 0.909804, 0.937255, 0.117647)
+
+[node name="Room" parent="." instance=ExtResource("2_35oy6")]
+
+[node name="CollisionShape2D" parent="Room/ActiveArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionMap" parent="Room" index="1"]
+layer_0/tile_data = PackedInt32Array(-1, 1, 0, -65537, 1, 0, -131073, 1, 0, 262143, 1, 0, 262142, 1, 0, 262141, 1, 0, 262140, 1, 0, 262139, 1, 0, 262138, 1, 0, 262137, 1, 0, 262136, 1, 0, 262135, 1, 0, 262134, 1, 0, 262133, 1, 0, 262132, 1, 0, 262131, 1, 0, 262130, 1, 0, 262129, 1, 0, 262128, 1, 0, 262127, 1, 0, 262126, 1, 0, 262125, 1, 0, 262124, 1, 0, 262123, 1, 0, 262122, 1, 0, 262121, 1, 0, 262120, 1, 0, 262119, 1, 0, 262118, 1, 0, 262117, 1, 0, -131101, 1, 0, 262116, 1, 0, 262115, 1, 0, -131100, 1, 0, -131099, 1, 0, -131098, 1, 0, -131097, 1, 0, -131096, 1, 0, -131095, 1, 0, -131094, 1, 0, -131093, 1, 0, -131092, 1, 0, -131091, 1, 0, -131090, 1, 0, -131089, 1, 0, -131088, 1, 0, -131087, 1, 0, -131086, 1, 0, -131085, 1, 0, -131084, 1, 0, -131083, 1, 0, -131082, 1, 0, -131081, 1, 0, -131080, 1, 0, -131079, 1, 0, -131078, 1, 0, -131077, 1, 0, -131076, 1, 0, -131075, 1, 0, -131074, 1, 0, -65565, 1, 0, -29, 1, 0)
+
+[node name="Flower" parent="Room/Objects" index="1" instance=ExtResource("3_ptlxf")]
+material = SubResource("ShaderMaterial_m4chi")
+position = Vector2(-736, 96)
+
+[node name="Flower4" parent="Room/Objects" index="2" instance=ExtResource("3_ptlxf")]
+material = SubResource("ShaderMaterial_ug3kd")
+position = Vector2(-592, -64)
+rotation = 3.14159
+
+[node name="Flower5" parent="Room/Objects" index="3" instance=ExtResource("3_ptlxf")]
+material = SubResource("ShaderMaterial_0wij5")
+position = Vector2(-304, -64)
+rotation = 3.14159
+
+[node name="Flower2" parent="Room/Objects" index="4" instance=ExtResource("3_ptlxf")]
+material = SubResource("ShaderMaterial_dur2k")
+position = Vector2(-448, 96)
+
+[node name="Flower3" parent="Room/Objects" index="5" instance=ExtResource("3_ptlxf")]
+material = SubResource("ShaderMaterial_18kno")
+position = Vector2(-160, 96)
+
+[editable path="Room"]

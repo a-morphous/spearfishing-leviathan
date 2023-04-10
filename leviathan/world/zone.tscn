@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0tmujusgk7u"]
+
+[ext_resource type="Script" path="res://leviathan/world/Zone.cs" id="1_rq3at"]
+[ext_resource type="PackedScene" uid="uid://bugxlkstxlwhb" path="res://leviathan/world/room.tscn" id="2_l03g4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5bg"]
+
+[node name="Zone" type="Node2D"]
+script = ExtResource("1_rq3at")
+
+[node name="ZoneArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 129
+
+[node name="Rectangle" type="CollisionShape2D" parent="ZoneArea"]
+shape = SubResource("RectangleShape2D_2i5bg")
+debug_color = Color(0.596078, 0.909804, 0.937255, 0.117647)
+
+[node name="Room" parent="." instance=ExtResource("2_l03g4")]
+
+[node name="CollisionShape2D" parent="Room/ActiveArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[editable path="Room"]

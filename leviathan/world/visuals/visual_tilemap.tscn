@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs2ibe1ppf6xf"]
+
+[ext_resource type="TileSet" uid="uid://d0wqabablyq4l" path="res://assets/visual_tiles.tres" id="1_k0cib"]
+
+[node name="VisualTilemap" type="TileMap"]
+position = Vector2(-16, -16)
+scale = Vector2(0.33, 0.33)
+tile_set = ExtResource("1_k0cib")
+cell_quadrant_size = 32
+format = 2
+layer_1/name = "overlay"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()

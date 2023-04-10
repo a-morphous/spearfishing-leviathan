@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfcealv8dbupc"]
+
+[ext_resource type="Script" path="res://leviathan/ui/HP.cs" id="1_hu603"]
+[ext_resource type="FontFile" uid="uid://dej46llhjd5da" path="res://assets/electrolize-regular.ttf" id="1_ie8py"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohsce"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0, 1, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yybbl"]
+bg_color = Color(1, 0, 1, 1)
+
+[node name="UI" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HP" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 56.0
+script = ExtResource("1_hu603")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HP"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 40.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/HP/VBoxContainer"]
+layout_mode = 2
+
+[node name="HPLabel" type="Label" parent="CanvasLayer/HP/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ie8py")
+text = "99"
+vertical_alignment = 2
+
+[node name="MaxHPLabel" type="Label" parent="CanvasLayer/HP/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.447059, 0.447059, 0.447059, 1)
+theme_override_fonts/font = ExtResource("1_ie8py")
+text = "/ 100"
+vertical_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HP/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 8)
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ohsce")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yybbl")
+step = 1.0
+value = 50.0
+show_percentage = false

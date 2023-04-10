@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj3kqsodsi60v"]
+
+[ext_resource type="Script" path="res://leviathan/actors/effects/OneshotParticleEffect.cs" id="1_6i0ie"]
+
+[sub_resource type="Curve" id="Curve_ec4ei"]
+_data = [Vector2(0.597413, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jk0tf"]
+curve = SubResource("Curve_ec4ei")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3aamc"]
+lifetime_randomness = 0.47
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+direction = Vector3(2.08165e-12, 1, 2.08165e-12)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 3.0
+damping_max = 10.0
+scale_min = 20.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_jk0tf")
+color = Color(1, 0, 1, 1)
+turbulence_enabled = true
+turbulence_noise_scale = 3.03
+
+[node name="player_explosion" type="Node2D"]
+script = ExtResource("1_6i0ie")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_3aamc")
+one_shot = true
+explosiveness = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

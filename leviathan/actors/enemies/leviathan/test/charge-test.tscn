@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfttr7pk0t8kd"]
+
+[ext_resource type="Script" path="res://leviathan/actors/enemies/leviathan/test/MouseTarget.cs" id="1_e518c"]
+[ext_resource type="Texture2D" uid="uid://v8e0tbsyxxb6" path="res://addons/better-terrain/icons/Warning.svg" id="2_hkmwm"]
+[ext_resource type="PackedScene" uid="uid://b2a5ydovyf3ot" path="res://leviathan/actors/actor.tscn" id="3_obr5n"]
+[ext_resource type="Script" path="res://leviathan/actors/enemies/leviathan/test/LeviathanChargeTest.cs" id="4_nt71o"]
+[ext_resource type="PackedScene" uid="uid://q1j1kjieyfvh" path="res://leviathan/actors/enemies/leviathan/animations/leviathan_sprite.tscn" id="5_6euu1"]
+
+[node name="charge-test" type="Node2D"]
+
+[node name="MouseTarget" type="Node2D" parent="."]
+script = ExtResource("1_e518c")
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseTarget"]
+texture = ExtResource("2_hkmwm")
+
+[node name="Leviathan" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("3_obr5n")]
+script = ExtResource("4_nt71o")
+Target = NodePath("../MouseTarget")
+
+[node name="leviathan_sprite" parent="Leviathan" instance=ExtResource("5_6euu1")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

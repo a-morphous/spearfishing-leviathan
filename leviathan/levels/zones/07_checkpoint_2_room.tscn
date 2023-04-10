@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://tbmtqve67oc7"]
+
+[ext_resource type="Script" path="res://leviathan/world/Zone.cs" id="1_155b8"]
+[ext_resource type="PackedScene" uid="uid://bugxlkstxlwhb" path="res://leviathan/world/room.tscn" id="2_asogw"]
+[ext_resource type="PackedScene" uid="uid://dcxelgvg83mpn" path="res://leviathan/objects/checkpoint.tscn" id="3_1oxfg"]
+[ext_resource type="PackedScene" uid="uid://dgdqceib3s8ax" path="res://leviathan/objects/hp_pickup.tscn" id="4_4c5tt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5bg"]
+
+[node name="07Checkpoint2Room" type="Node2D"]
+script = ExtResource("1_155b8")
+
+[node name="ZoneArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 129
+
+[node name="Rectangle" type="CollisionShape2D" parent="ZoneArea"]
+shape = SubResource("RectangleShape2D_2i5bg")
+debug_color = Color(0.596078, 0.909804, 0.937255, 0.117647)
+
+[node name="Room" parent="." instance=ExtResource("2_asogw")]
+
+[node name="CollisionShape2D" parent="Room/ActiveArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionMap" parent="Room" index="1"]
+layer_0/tile_data = PackedInt32Array(65541, 1, 0, 5, 1, 0, 4, 1, 0, 3, 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 1, 0, 131070, 1, 0, 131077, 1, 0, 196606, 1, 0, 393221, 1, 0, 393220, 1, 0, 393219, 1, 0, 393218, 1, 0, 393217, 1, 0, 393216, 1, 0, 458751, 1, 0, 458750, 1, 0)
+
+[node name="VisualTilemap" parent="Room/Objects" index="0"]
+scale = Vector2(0.333, 0.333)
+layer_0/tile_data = PackedInt32Array(65534, 1, 0, 65535, 65537, 0, 131070, 1, 1, 131071, 196609, 0, 196606, 262145, 1, 196607, 131073, 1, 262142, 65537, 2, 262143, 131073, 2, 0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0, 4, 65537, 0, 5, 65537, 0, 6, 131073, 0, 65536, 65537, 2, 65537, 65537, 2, 65538, 65537, 2, 65539, 65537, 2, 65540, 65537, 2, 65541, 262145, 0, 65542, 131073, 1, 131077, 1, 1, 131078, 196609, 1, 196613, 1, 2, 196614, 65537, 2, 131079, 65537, 0, 131080, 131073, 0, 196615, 65537, 2, 196616, 131073, 2, 196604, 1, 0, 196605, 65537, 0, 262140, 1, 2, 262141, 65537, 2, 458748, 1, 0, 458749, 65537, 0, 458750, 65537, 0, 458751, 65537, 0, 393216, 65537, 0, 393217, 65537, 0, 393218, 65537, 0, 393219, 65537, 0, 393220, 65537, 0, 393221, 65537, 0, 393222, 65537, 0, 393223, 65537, 0, 393224, 131073, 0, 524284, 1, 2, 524285, 65537, 2, 524286, 65537, 2, 524287, 65537, 2, 458752, 65537, 2, 458753, 65537, 2, 458754, 65537, 2, 458755, 65537, 2, 458756, 65537, 2, 458757, 65537, 2, 458758, 65537, 2, 458759, 65537, 2, 458760, 131073, 2)
+layer_1/tile_data = PackedInt32Array(196604, 2, 0, 262140, 2, 2, 196605, 65538, 0, 262141, 131074, 2, 458748, 2, 0, 524284, 2, 2, 458749, 131074, 0, 524285, 65538, 2, 393223, 2, 0, 458759, 65538, 2, 393224, 131074, 0, 458760, 131074, 2, 131079, 65538, 0, 196615, 2, 2, 131080, 131074, 0, 196616, 131074, 2, 65535, 65538, 0, 0, 65538, 0, 1, 65538, 0, 2, 65538, 0, 3, 65538, 0, 4, 65538, 0, 5, 65538, 0, 524286, 65538, 2, 524287, 65538, 2, 458752, 65538, 2, 458753, 65538, 2, 458754, 65538, 2, 458755, 65538, 2, 458756, 65538, 2, 458757, 65538, 2, 458758, 65538, 2, 65542, 131074, 1, 131070, 2, 1, 196606, 262146, 1, 65534, 2, 0, 6, 131074, 0, 131078, 196610, 1)
+
+[node name="Checkpoint" parent="Room/Objects" index="1" instance=ExtResource("3_1oxfg")]
+position = Vector2(64, 112)
+CheckPointIndex = 2
+
+[node name="hp_pickup" parent="Room/Objects" index="2" instance=ExtResource("4_4c5tt")]
+position = Vector2(64, 128)
+
+[editable path="Room"]

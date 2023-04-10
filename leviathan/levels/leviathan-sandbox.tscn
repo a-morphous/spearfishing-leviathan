@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://8dhq7uw47cua"]
+
+[ext_resource type="PackedScene" uid="uid://cvhemkgh0hqwh" path="res://leviathan/world/world.tscn" id="1_s2lfa"]
+[ext_resource type="PackedScene" uid="uid://cif6waofbir54" path="res://leviathan/levels/zones/leviathan_room.tscn" id="2_ocv8t"]
+[ext_resource type="PackedScene" uid="uid://d0tmujusgk7u" path="res://leviathan/world/zone.tscn" id="3_lywwx"]
+[ext_resource type="PackedScene" uid="uid://cair80s5wkmi3" path="res://leviathan/actors/player/player.tscn" id="4_v8arq"]
+[ext_resource type="PackedScene" uid="uid://dfcealv8dbupc" path="res://leviathan/ui/ui.tscn" id="5_8322l"]
+
+[node name="World" instance=ExtResource("1_s2lfa")]
+
+[node name="Zone" parent="." index="2" instance=ExtResource("2_ocv8t")]
+
+[node name="Zone2" parent="." index="3" instance=ExtResource("3_lywwx")]
+
+[node name="CollisionMap" parent="Zone2/Room" index="1"]
+layer_0/tile_data = PackedInt32Array(-1179632, 1, 0, -1179633, 1, 0, -1179634, 1, 0, -1245170, 1, 0, -1310706, 1, 0, -1376242, 1, 0, -1441778, 1, 0, -1507314, 1, 0, -1507313, 1, 0, -1507312, 1, 0, -1507311, 1, 0, -1507310, 1, 0, -1507309, 1, 0, -1507308, 1, 0, -1507307, 1, 0, -1507306, 1, 0, -1507305, 1, 0, -1507304, 1, 0, -1507303, 1, 0, -1507302, 1, 0, -1179629, 1, 0, -1179628, 1, 0, -1179627, 1, 0, -1179626, 1, 0, -1179625, 1, 0, -1179624, 1, 0, -1179623, 1, 0, -1179622, 1, 0, -1245158, 1, 0, -1310694, 1, 0, -1376230, 1, 0, -1441766, 1, 0)
+
+[node name="Player" parent="." index="4" instance=ExtResource("4_v8arq")]
+position = Vector2(780, -630)
+
+[node name="UI" parent="." index="5" instance=ExtResource("5_8322l")]
+
+[editable path="Zone2"]
+[editable path="Zone2/Room"]
+[editable path="PlayerSpawner"]

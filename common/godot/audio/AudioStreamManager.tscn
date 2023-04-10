@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvyjyr6s5rfo8"]
+
+[ext_resource type="Script" path="res://common/godot/audio/AudioStreamManager.cs" id="1_m6i2e"]
+
+[node name="AudioStreamManager" type="Node"]
+script = ExtResource("1_m6i2e")

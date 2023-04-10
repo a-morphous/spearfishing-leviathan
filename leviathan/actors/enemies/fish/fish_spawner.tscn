@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxwbvxedrs4ll"]
+
+[ext_resource type="Script" path="res://leviathan/actors/enemies/fish/FishSpawner.cs" id="1_a3f8m"]
+[ext_resource type="Script" path="res://leviathan/actors/enemies/fish/FishTarget.cs" id="2_4ni7m"]
+[ext_resource type="PackedScene" uid="uid://bdtnstqtvvj3o" path="res://leviathan/actors/enemies/fish/fish.tscn" id="2_ugoee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7wr3"]
+radius = 107.74
+
+[node name="FishSpawner" type="Node2D"]
+script = ExtResource("1_a3f8m")
+FishScene = ExtResource("2_ugoee")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ChaseArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea"]
+shape = SubResource("CircleShape2D_s7wr3")
+
+[node name="FishTarget" type="Node2D" parent="."]
+script = ExtResource("2_4ni7m")

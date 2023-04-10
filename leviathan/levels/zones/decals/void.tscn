@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://5p6cut3ajqfp"]
+
+[ext_resource type="Texture2D" uid="uid://0kt2r5k25nq1" path="res://assets/void.png" id="1_5rkje"]
+
+[node name="Void" type="Sprite2D"]
+position = Vector2(672, 352)
+scale = Vector2(2.125, 1.5)
+texture = ExtResource("1_5rkje")

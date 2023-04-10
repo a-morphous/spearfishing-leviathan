@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bugxlkstxlwhb"]
+
+[ext_resource type="Script" path="res://leviathan/world/Room.cs" id="1_ep1cp"]
+[ext_resource type="TileSet" uid="uid://c1h0yi6ior753" path="res://assets/tilemask.tres" id="2_fc3un"]
+[ext_resource type="PackedScene" uid="uid://bs2ibe1ppf6xf" path="res://leviathan/world/visuals/visual_tilemap.tscn" id="3_syjtx"]
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_ep1cp")
+
+[node name="ActiveArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveArea"]
+debug_color = Color(0, 0.6, 0.701961, 0.0431373)
+
+[node name="CollisionMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_fc3un")
+format = 2
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="VisualTilemap" parent="Objects" instance=ExtResource("3_syjtx")]
+scale = Vector2(0.333, 0.333)

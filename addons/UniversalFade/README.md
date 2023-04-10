@@ -1,0 +1,1 @@
+This directory contains the [Universal Fade](https://github.com/KoBeWi/Godot-Universal-Fade) addon, which is released under the MIT license and redistributed here under the same license.

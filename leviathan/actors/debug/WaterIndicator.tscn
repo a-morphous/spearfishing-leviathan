@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3oycwr5wiri1"]
+
+[ext_resource type="Script" path="res://leviathan/actors/debug/WaterIndicator.cs" id="1_kebx7"]
+[ext_resource type="Texture2D" uid="uid://dmwomdt6tbki7" path="res://addons/better-terrain/icons/MatchTiles.svg" id="2_cyaxx"]
+
+[node name="WaterIndicator" type="Node2D"]
+script = ExtResource("1_kebx7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cyaxx")

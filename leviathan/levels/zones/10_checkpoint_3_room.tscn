@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://xt07xvxq0jts"]
+
+[ext_resource type="Script" path="res://leviathan/world/Zone.cs" id="1_utenl"]
+[ext_resource type="PackedScene" uid="uid://bugxlkstxlwhb" path="res://leviathan/world/room.tscn" id="2_lvtfx"]
+[ext_resource type="PackedScene" uid="uid://c4cfj78r3uu70" path="res://leviathan/levels/zones/decals/tutorial_text.tscn" id="3_jpysu"]
+[ext_resource type="PackedScene" uid="uid://cdylbxxopr1ve" path="res://leviathan/water/visuals/visual_water.tscn" id="3_yh4ln"]
+[ext_resource type="PackedScene" uid="uid://dcxelgvg83mpn" path="res://leviathan/objects/checkpoint.tscn" id="4_qhtqa"]
+[ext_resource type="PackedScene" uid="uid://dgdqceib3s8ax" path="res://leviathan/objects/hp_pickup.tscn" id="5_get7k"]
+[ext_resource type="PackedScene" uid="uid://cp0nv4ljvhshd" path="res://leviathan/water/water.tscn" id="6_67ijl"]
+[ext_resource type="PackedScene" uid="uid://5p6cut3ajqfp" path="res://leviathan/levels/zones/decals/void.tscn" id="7_qp3ih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5bg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18twe"]
+size = Vector2(154, 138)
+
+[node name="10-Checkpoint3Room" type="Node2D"]
+script = ExtResource("1_utenl")
+
+[node name="ZoneArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 129
+
+[node name="Rectangle" type="CollisionShape2D" parent="ZoneArea"]
+shape = SubResource("RectangleShape2D_2i5bg")
+debug_color = Color(0.596078, 0.909804, 0.937255, 0.117647)
+
+[node name="Room" parent="." instance=ExtResource("2_lvtfx")]
+
+[node name="CollisionShape2D" parent="Room/ActiveArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionMap" parent="Room" index="1"]
+layer_0/tile_data = PackedInt32Array(65535, 1, 0, 65534, 1, 0, 65533, 1, 0, 65532, 1, 0, 65531, 1, 0, 65530, 1, 0, 65529, 1, 0, -196609, 1, 0, -262145, 1, 0, -327681, 1, 0, -327690, 1, 0, -262154, 1, 0, -196618, 1, 0, -131082, 1, 0, -65546, 1, 0, -10, 1, 0, 65526, 1, 0, -5, 1, 0, -65541, 1, 0, -131077, 1, 0, -131078, 1, 0, -131079, 1, 0, -65543, 1, 0, -7, 1, 0, -65542, 1, 0, -6, 1, 0, -393226, 1, 0, -458762, 1, 0, -524298, 1, 0, -524297, 1, 0, -524296, 1, 0, -524295, 1, 0, -524294, 1, 0, -524293, 1, 0, -524292, 1, 0, -524291, 1, 0, -524290, 1, 0, -524289, 1, 0, -458753, 1, 0, -393217, 1, 0, -196613, 1, 0, -196614, 1, 0, -196615, 1, 0, -262151, 1, 0, -262150, 1, 0, -262149, 1, 0)
+
+[node name="HoveringText" parent="Room/Objects" index="0" instance=ExtResource("3_jpysu")]
+position = Vector2(-160, -224)
+
+[node name="Label" parent="Room/Objects/HoveringText" index="0"]
+text = "Have you prepared yourself?"
+
+[node name="VisualWater" parent="Room/Objects" index="1" instance=ExtResource("3_yh4ln")]
+position = Vector2(-144, -128)
+
+[node name="VisualWaterBounds" parent="Room/Objects/VisualWater" index="2"]
+offset_right = 208.0
+offset_bottom = 144.0
+
+[node name="VisualTilemap" parent="Room/Objects" index="2"]
+layer_0/tile_data = PackedInt32Array(-262151, 1, 0, -262150, 65537, 0, -262149, 65537, 0, -262148, 131073, 0, -196615, 1, 1, -196614, 65537, 1, -196613, 65537, 1, -196612, 131073, 1, -131079, 1, 1, -131078, 65537, 1, -131077, 65537, 1, -131076, 131073, 1, -65543, 1, 1, -65542, 65537, 1, -65541, 65537, 1, -65540, 131073, 1, -7, 1, 1, -6, 65537, 1, -5, 65537, 1, -4, 131073, 1, 65529, 1, 1, 65530, 65537, 1, 65531, 65537, 1, 65532, 196609, 1, 131065, 1, 1, 131066, 196609, 0, 131067, 65537, 2, 131068, 65537, 2, 65533, 65537, 0, 65534, 65537, 0, 65535, 65537, 0, 0, 65537, 0, 131069, 65537, 2, 131070, 65537, 2, 131071, 65537, 2, 65536, 65537, 2, -524298, 1, 0, -524297, 65537, 0, -524296, 65537, 0, -524295, 65537, 0, -524294, 65537, 0, -524293, 65537, 0, -524292, 65537, 0, -524291, 65537, 0, -524290, 65537, 0, -524289, 65537, 0, -589824, 131073, 0, -458762, 1, 1, -458761, 196609, 0, -458760, 65537, 2, -458759, 65537, 2, -458758, 65537, 2, -458757, 65537, 2, -458756, 65537, 2, -458755, 65537, 2, -458754, 65537, 2, -458753, 262145, 0, -524288, 131073, 1, -393217, 1, 1, -458752, 131073, 1, -327681, 1, 1, -393216, 131073, 1, -262145, 1, 1, -327680, 131073, 1, -196609, 1, 1, -262144, 196609, 1, -131073, 1, 2, -196608, 65537, 2, -393226, 1, 1, -393225, 131073, 1, -327690, 1, 1, -327689, 131073, 1, -262154, 1, 1, -262153, 131073, 1, -196618, 1, 1, -196617, 131073, 1, -131082, 1, 1, -131081, 131073, 1, -65546, 1, 1, -65545, 131073, 1, -10, 1, 1, -9, 131073, 1, 65526, 1, 1, 65527, 131073, 1, 131062, 1, 1, 131063, 131073, 1, 196598, 1, 2, 196599, 131073, 2, 196601, 1, 2, 196602, 131073, 2, -262143, 65537, 0, -262142, 131073, 0, -196607, 65537, 2, -196606, 131073, 2, 1, 65537, 0, 2, 131073, 0, 65537, 65537, 2, 65538, 131073, 2)
+layer_1/tile_data = PackedInt32Array(-262143, 65538, 0, -196607, 2, 2, -262142, 131074, 0, -196606, 131074, 2, 1, 2, 0, 65537, 65538, 2, 2, 131074, 0, 65538, 131074, 2, 131062, 2, 1, 196598, 2, 2, 131063, 131074, 0, 196599, 131074, 2, 131065, 2, 0, 196601, 2, 2, 131066, 196610, 0, 196602, 131074, 2, 131067, 65538, 2, 131068, 65538, 2, 131069, 65538, 2, 131070, 65538, 2, 131071, 65538, 2, 65536, 65538, 2, 65526, 2, 1, -10, 2, 1, -65546, 2, 1, -131082, 2, 1, -196618, 2, 1, -262154, 2, 1, -458762, 2, 1, -393226, 2, 1, -327690, 2, 1, -524298, 2, 0, -524297, 65538, 0, -524296, 65538, 0, -524295, 65538, 0, -524294, 65538, 0, -524293, 65538, 0, -524292, 65538, 0, -524291, 65538, 0, -524290, 65538, 0, -524289, 65538, 0, -589824, 131074, 0, -524288, 131074, 1, -458752, 131074, 1, -393216, 131074, 1, -327680, 131074, 1, -262144, 196610, 1)
+
+[node name="Checkpoint" parent="Room/Objects" index="3" instance=ExtResource("4_qhtqa")]
+position = Vector2(-80, -48)
+CheckPointIndex = 3
+
+[node name="hp_pickup" parent="Room/Objects" index="4" instance=ExtResource("5_get7k")]
+position = Vector2(-176, -176)
+
+[node name="hp_pickup2" parent="Room/Objects" index="5" instance=ExtResource("5_get7k")]
+position = Vector2(-144, -176)
+
+[node name="hp_pickup3" parent="Room/Objects" index="6" instance=ExtResource("5_get7k")]
+position = Vector2(-208, -176)
+
+[node name="Water" parent="Room/Objects" index="7" instance=ExtResource("6_67ijl")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Objects/Water"]
+position = Vector2(-67, -59)
+shape = SubResource("RectangleShape2D_18twe")
+
+[node name="Void" parent="Room/Objects" index="8" instance=ExtResource("7_qp3ih")]
+position = Vector2(32, -48)
+
+[node name="Void2" parent="Room/Objects" index="9" instance=ExtResource("7_qp3ih")]
+position = Vector2(-252, 112)
+scale = Vector2(2.4375, 1.5)
+
+[editable path="Room"]
+[editable path="Room/Objects/HoveringText"]
+[editable path="Room/Objects/VisualWater"]
